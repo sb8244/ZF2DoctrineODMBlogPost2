@@ -5,53 +5,25 @@ namespace Demo\Mapper;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Demo\Entity\Entry;
+use DemoBase\Mapper\GenericMapper;
 
 /**
- * Basic Mapping class for Doctrine. This can be abstracted
- * into a GenericMapper which will be covered in future blog posts.
- * 
- * All methods are pretty self explanatory
+ * Entry Mapper extends the GenericMapper and follows the interface
+ * given
  * 
  * @author Steve
  *
  */
-class EntryMapper implements EntryMapperInterface
+class EntryMapper extends GenericMapper implements EntryMapperInterface
 {
-    /**
-     * @var \Doctrine\Common\Persistence\ObjectManager
-     */
-    protected $documentManager;
+    //Custom defined sortBy
+    protected $sortBy = [
+        'text' => 'ASC'
+    ];
     
-    /**
-     * @var \Doctrine\Common\Persistence\ObjectRepository
-     */
-    protected $repository;
-    
-	public function __construct(ObjectManager $documentManager,	ObjectRepository $repository)
-	{
-		$this->documentManager = $documentManager;
-		$this->repository = $repository;
-	}
-	
-	public function find($id)
-	{
-	    return $this->repository->find($id);
-	}
-	
-	public function findAll()
-	{
-	    return $this->repository->findAll();
-	}
-	
-	public function save(Entry $entity)
-	{
-	    $this->documentManager->persist($entity);
-	    $this->documentManager->flush();
-	}
-	
-	public function remove(Entry $entity)
-	{
-	    $this->documentManager->remove($entity);
-	    $this->documentManager->flush();
-	}
+    public function findCustomFunction($custom, $params)
+    {
+        $query = [ 'custom' => $custom , 'params' => $params ];
+        return $this->repository->findBy($query, $this->sortBy);
+    }
 }

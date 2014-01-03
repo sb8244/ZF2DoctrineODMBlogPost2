@@ -3,6 +3,7 @@
 namespace Demo\Entity;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use DemoBase\Entity\BaseEntity;
 
 /**
  * Basic Entity which just contains publicly accessible variables.
@@ -11,7 +12,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  * @ODM\Document(collection="entry")
  * @author Steve
  */
-class Entry
+class Entry extends BaseEntity
 {
     /**
      * @ODM\Id
@@ -22,4 +23,15 @@ class Entry
      * @ODM\Field(type="string")
      */
     public $text;
+    
+    /**
+     * @ODM\PrePersist @ODM\PreUpdate
+     */
+    public function validate()
+    {
+        if(empty($this->text))
+            throw new \Exception(__CLASS__ . "->text is empty");
+        
+        return true;
+    }
 }

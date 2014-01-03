@@ -3,19 +3,21 @@
 namespace Demo\Mapper;
 
 use Demo\Entity\Entry;
+use DemoBase\Mapper\GenericMapperInterface;
 
 /**
- * This can be abstracted into a GenericMapperInterface and any Entry
- * specific mappings can be added into here. This will be covered in 
- * future posts
+ * This interface has all required functionality as the GenericMapperInterface
+ * provides, and can define more.
  * 
  * @author Steve
  *
  */
-interface EntryMapperInterface
+interface EntryMapperInterface extends GenericMapperInterface
 {
-    public function find($id);
-    public function findAll();
-    public function save(Entry $entry);
-    public function remove(Entry $entry);
+    /**
+     * A custom function which is just an example
+     * @param $custom
+     * @param $params
+     */
+    public function findCustomFunction($custom, $params);
 }
