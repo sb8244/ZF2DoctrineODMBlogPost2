@@ -10,7 +10,8 @@ return array(
         'DoctrineModule',
         'DoctrineMongoODMModule',
         'Application',
-        'Demo'
+        'Demo',
+        'DemoBase'
         ),
     'module_listener_options' => array(
         'module_paths' => array(

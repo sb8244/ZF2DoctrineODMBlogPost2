@@ -12,6 +12,8 @@
         "zendframework/zendframework": "2.2.*",
         "doctrine/mongodb-odm": "dev-master",
         "doctrine/doctrine-mongo-odm-module": "dev-master",
-        "zendframework/zftool": "dev-master"
+        "zendframework/zftool": "dev-master",
+        "phpunit/phpunit": "3.7.*",
+        "mockery/mockery": "dev-master"
     }
 }
