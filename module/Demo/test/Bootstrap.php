@@ -13,6 +13,9 @@ chdir(__DIR__);
 
 /**
  * Test bootstrap, for setting up autoloading
+ * 
+ * Run With:
+ *   phpunit -c module/Demo/test/
  */
 class Bootstrap
 {

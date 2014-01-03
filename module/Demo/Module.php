@@ -2,6 +2,8 @@
 namespace Demo;
 
 use Demo\Mapper\EntryMapper;
+use Zend\ModuleManager\ModuleManager;
+use Zend\EventManager\Event;
 
 class Module
 {
@@ -14,17 +16,20 @@ class Module
         $em->attach('*', 'Demo\Entity\Entry::save.post', function(Event $e) use ($sm)
         {
             $params = $e->getParams();
-    
+
             if($params['new'] === true)
             {
                 $entry = $params['entity'];
+                
                 //Do things with the entry
-                //For demo purposes, I'll just call remove on the entity
+                $entry->text = "<p>{$entry->text}</p>";
+                
                 $mapper = $sm->get('DemoEntryMapper');
-                $mapper->remove($entry);
+                $mapper->save($entry);
             }
         });
     }
+    
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';

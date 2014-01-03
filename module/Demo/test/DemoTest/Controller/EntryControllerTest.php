@@ -4,7 +4,6 @@ namespace DemoTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use Mockery;
-use MyProject\Proxies\__CG__\OtherProject\Proxies\__CG__\stdClass;
 use Demo\Entity\Entry;
 
 class EntryControllerTest extends AbstractHttpControllerTestCase
@@ -21,6 +20,7 @@ class EntryControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
 
         $this->mockMapper = Mockery::mock('Demo\Mapper\EntryMapper');
+        
         $this->getApplicationServiceLocator()->setAllowOverride(true)
             ->setService('DemoEntryMapper', $this->mockMapper);
     }
