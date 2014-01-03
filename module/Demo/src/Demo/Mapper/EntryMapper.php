@@ -21,7 +21,7 @@ class EntryMapper extends GenericMapper implements EntryMapperInterface
         'text' => 'ASC'
     ];
     
-    public function findCustomFunction($custom, $params)
+    public function findByCustom($custom, $params)
     {
         $query = [ 'custom' => $custom , 'params' => $params ];
         return $this->repository->findBy($query, $this->sortBy);

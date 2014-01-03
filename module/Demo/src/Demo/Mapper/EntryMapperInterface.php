@@ -19,5 +19,5 @@ interface EntryMapperInterface extends GenericMapperInterface
      * @param $custom
      * @param $params
      */
-    public function findCustomFunction($custom, $params);
+    public function findByCustom($custom, $params);
 }

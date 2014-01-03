@@ -6,8 +6,6 @@ use Mockery;
 use DemoBase\Mapper\GenericMapper;
 
 /**
- * Test that the LeadMapper works
- * 
  * Mock DocumentManager and Repository for the most part, except for real life tests
  * for things like Unicode support
  * 
