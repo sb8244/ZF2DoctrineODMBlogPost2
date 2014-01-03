@@ -61,11 +61,17 @@ class EntryController extends AbstractActionController
      */
     public function addAction()
     {
-        /* @var $entry Entry */
-        $entry = $this->getServiceLocator()->get('DemoEntry');
-        $entry->text = $this->params()->fromPost('text');
-        $this->getEntryMapper()->save($entry);
-        return new JsonModel([$entry]);
+        $text = $this->params()->fromPost('text');
+        $result = [];
+        if($text !== null)
+        {
+            /* @var $entry Entry */
+            $entry = $this->getServiceLocator()->get('DemoEntry');
+            $entry->text = $text;
+            $this->getEntryMapper()->save($entry);
+            $result = [$entry];
+        }
+        return new JsonModel($result);
     }
     
     private $entryMapper = null;
