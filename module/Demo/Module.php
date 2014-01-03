@@ -5,6 +5,26 @@ use Demo\Mapper\EntryMapper;
 
 class Module
 {
+    public function init(ModuleManager $mm)
+    {
+        $sm = $mm->getEvent()->getParam('ServiceManager');
+        $em = $mm->getEventManager()->getSharedManager();
+    
+        //attach to lead saving event
+        $em->attach('*', 'Demo\Entity\Entry::save.post', function(Event $e) use ($sm)
+        {
+            $params = $e->getParams();
+    
+            if($params['new'] === true)
+            {
+                $entry = $params['entity'];
+                //Do things with the entry
+                //For demo purposes, I'll just call remove on the entity
+                $mapper = $sm->get('DemoEntryMapper');
+                $mapper->remove($entry);
+            }
+        });
+    }
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
