@@ -12,7 +12,7 @@ use Demo\Mapper\EntryMapper;
  * @author Steve
  *
  * Run with:
- *  phpunit -c module/Demo/test/ --filter HookTest
+ *  phpunit -c module/Demo/test/ --group hook
  */
 class HookTest extends \PHPUnit_Framework_TestCase
 {
@@ -43,6 +43,7 @@ class HookTest extends \PHPUnit_Framework_TestCase
     
     /**
      * Hook needs to fire off when this is a new entry
+     * @group hook
      */
     public function testHookHappensNew()
     {
@@ -62,6 +63,7 @@ class HookTest extends \PHPUnit_Framework_TestCase
    
     /**
      * Hook doesn't fire off when this isn't new, so no mocked dependency
+     * @group hook
      */
     public function testHookHappensNotNew()
     {

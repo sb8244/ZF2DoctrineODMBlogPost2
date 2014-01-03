@@ -1,0 +1,3 @@
+./vendor/phpunit/phpunit/composer/bin/phpunit -c module/DemoBase/test
+./vendor/phpunit/phpunit/composer/bin/phpunit -c module/Demo/test --exclude-group hook
+./vendor/phpunit/phpunit/composer/bin/phpunit -c module/Demo/test --group hook
