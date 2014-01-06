@@ -60,6 +60,11 @@ return array(
      */
     'doctrine' => array(
         'driver' => array(
+            'ODM_Driver' => array(
+                'paths' => array(
+                    __DIR__ . '/../src/Demo/Entity'
+                )
+            ),
             'odm_default' => array(
                 'drivers' => array(
                     'Demo\Entity\Entry' => 'ODM_Driver'
