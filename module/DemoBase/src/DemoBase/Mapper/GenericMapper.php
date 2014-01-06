@@ -66,11 +66,13 @@ class GenericMapper implements GenericMapperInterface, EventManagerAwareInterfac
 		{
 		    $new = $this->documentManager->contains($entity) === false;
 		    $this->utf8_encode_deep($entity);
-			$this->getEventManager()->trigger(get_class($entity) . "::" . __FUNCTION__ . '.pre' , $this, ['entity'=>$entity, 'new' => $new]);
-			$this->documentManager->persist($entity);
-			$this->documentManager->flush();
-			$this->getEventManager()->trigger(get_class($entity) . "::" . __FUNCTION__ . '.post' , $this, ['entity'=>$entity, 'new' => $new]);
-			return true;
+		    $this->getEventManager()->trigger(get_class($entity) . "::" . __FUNCTION__ . '.pre' ,
+		            $this, ['entity'=>$entity, 'new' => $new]);
+		    $this->documentManager->persist($entity);
+		    $this->documentManager->flush();
+		    $this->getEventManager()->trigger(get_class($entity) . "::" . __FUNCTION__ . '.post' ,
+		            $this, ['entity'=>$entity, 'new' => $new]);
+		    return true;
 		} catch (\MongoCursorException $e)
 		{
 			$duplicates = array();
